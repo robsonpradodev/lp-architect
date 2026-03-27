@@ -1,0 +1,299 @@
+<!-- ============================================================
+  VARIANT B — Bold Dark
+  Inspired by: agency portfolio, strong typography, dark bg,
+  orange/teal accent palette, prominent photo, repeated CTAs.
+  Modules (remove any section to disable it):
+    #mod-hero      — full-viewport hero with split layout
+    #mod-marquee   — scrolling ticker of role keywords
+    #mod-about     — bio + skills
+    #mod-services  — icon service cards on dark
+    #mod-work      — masonry-style portfolio grid
+    #mod-testimonial — single featured quote
+    #mod-cta       — full-bleed closing CTA
+  All {{placeholder}} tokens are replaced by the Builder agent.
+  ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark only">
+  <title>{{name}} | {{role}}</title>
+  <meta name="description" content="Portfólio de {{name}} — {{role}} em {{city}}. Design estratégico, entrega rápida, contato direto.">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Archivo"', 'system-ui', 'sans-serif'],
+            body: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            night:   '#080e1a',
+            panel:   '#0f1929',
+            border:  'rgba(255,255,255,0.08)',
+            muted:   '#8fa3bd',
+            cta:     '#f97316',
+            gold:    '#ffd166',
+            teal:    '#5eead4',
+          },
+          keyframes: {
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+            fadein: { '0%': { opacity: '0', transform: 'translateY(16px)' }, '100%': { opacity: '1', transform: 'none' } },
+          },
+          animation: {
+            marquee: 'marquee 22s linear infinite',
+            fadein: 'fadein 0.8s ease both',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-night text-white font-body antialiased" data-variant="{{variant}}">
+
+  <!-- ═══ NAV ══════════════════════════════════════════════════════════ -->
+  <nav class="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-5 bg-night/80 backdrop-blur-md border-b border-border">
+    <a href="#" class="font-display font-extrabold text-lg tracking-tighter text-white">{{firstName}}.</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+      <li><a href="#mod-about"    class="hover:text-white transition-colors">Sobre</a></li>
+      <li><a href="#mod-services" class="hover:text-white transition-colors">Serviços</a></li>
+      <li><a href="#mod-work"     class="hover:text-white transition-colors">Portfólio</a></li>
+    </ul>
+    <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+       class="inline-flex items-center gap-1.5 rounded-full bg-cta text-white px-5 py-2 text-sm font-bold hover:bg-orange-400 transition-colors">
+      Falar agora ↗
+    </a>
+  </nav>
+
+  <!-- ═══ #mod-hero ═════════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-hero" class="relative min-h-screen grid md:grid-cols-2 overflow-hidden">
+    <!-- LEFT: copy -->
+    <div class="relative z-10 flex flex-col justify-end px-8 pb-16 md:pb-24 pt-32 bg-night animate-fadein">
+      <p class="text-xs uppercase tracking-[0.24em] text-gold font-bold mb-6">Portfólio profissional</p>
+
+      <h1 class="font-display font-black leading-none tracking-tighter text-white"
+          style="font-size: clamp(3.8rem, 9vw, 7.8rem);">
+        {{firstName}}<br>
+        <span class="text-cta">{{role_short}}</span>
+      </h1>
+
+      <p class="mt-6 text-muted text-lg leading-relaxed max-w-[44ch]">
+        {{name}} — {{role}} em {{city}}. Projetos que combinam estratégia, estética e conversão.
+      </p>
+
+      <!-- ═══ #mod-stats ─ remove <div class="grid…"> to disable ═══ -->
+      <div class="grid grid-cols-2 gap-6 mt-10 max-w-xs">
+        <div data-counter data-target="200" data-prefix="+" data-suffix="">
+          <p class="text-3xl font-black tabular-nums text-white"><span class="counter-value">+200</span></p>
+          <p class="text-xs uppercase tracking-widest text-muted mt-1">Projetos</p>
+        </div>
+        <div data-counter data-target="50" data-prefix="+" data-suffix="">
+          <p class="text-3xl font-black tabular-nums text-white"><span class="counter-value">+50</span></p>
+          <p class="text-xs uppercase tracking-widest text-muted mt-1">Startups</p>
+        </div>
+      </div>
+      <!-- ═══ end #mod-stats ═══ -->
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full bg-cta text-white px-7 py-3.5 text-sm font-bold hover:bg-orange-400 transition-colors">
+          Iniciar conversa
+        </a>
+        <a href="{{linkedin_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-bold hover:border-white/20 transition-colors"
+           data-hide-if-placeholder>
+          LinkedIn ↗
+        </a>
+        <a href="{{portfolio_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-bold hover:border-white/20 transition-colors"
+           data-hide-if-placeholder>
+          Portfólio ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: photo -->
+    <div class="relative hidden md:block">
+      <img src="{{photo_url}}" alt="{{name}}"
+           class="absolute inset-0 w-full h-full object-cover object-top"
+           data-hide-if-broken>
+      <!-- gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-night via-transparent to-transparent pointer-events-none"></div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-marquee ══════════════════════════════════════════════════
+       Disable: remove this entire <div> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <div id="mod-marquee" class="border-y border-border overflow-hidden py-4 bg-panel">
+    <div class="flex gap-12 whitespace-nowrap animate-marquee" aria-hidden="true">
+      <!-- duplicated for seamless loop -->
+      <template id="marquee-items">
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">UI/UX Design</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Landing Pages</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Identidade Visual</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Portfólio Digital</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Branding</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Webflow</span>
+        <span class="text-cta mx-2">✦</span>
+        <span class="text-sm font-bold uppercase tracking-widest text-muted">Figma</span>
+        <span class="text-cta mx-2">✦</span>
+      </template>
+    </div>
+  </div>
+
+  <!-- ═══ #mod-about ════════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-about" class="py-24 px-8 bg-night">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-[1.2fr_1fr] gap-16 items-center">
+      <div>
+        <p class="text-xs uppercase tracking-[0.22em] text-gold font-bold mb-6">Sobre</p>
+        <h2 class="font-display font-black leading-none tracking-tighter text-white"
+            style="font-size: clamp(2.8rem, 5vw, 4.6rem);">
+          Design que<br><span class="text-teal">resolve</span><br>problemas.
+        </h2>
+        <p class="mt-8 text-muted text-lg leading-relaxed max-w-[50ch]">
+          {{name}} é {{role}} baseado em {{city}}. Cada projeto é uma combinação de
+          pesquisa, intenção estética e foco em resultado — não apenas em aparência.
+        </p>
+        <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 mt-8 text-sm font-bold text-cta border-b border-cta/40 pb-1 hover:border-cta transition-colors">
+          Vamos conversar sobre seu projeto ↗
+        </a>
+      </div>
+      <div class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.22em] text-muted font-bold mb-6">Competências</p>
+        <div class="flex flex-wrap gap-2" data-split-items="{{skills}}"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-services ═════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-services" class="py-24 px-8 bg-panel">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-gold font-bold mb-3">Serviços</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl tracking-tight">O que entrego.</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Card 1 -->
+        <article class="svc-card rounded-2xl border border-border p-8 hover:border-cta/40 transition-colors group">
+          <div class="text-3xl mb-6">🎨</div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-cta transition-colors">Landing Pages</h3>
+          <p class="text-muted text-sm leading-relaxed">
+            Páginas personalizadas, responsivas e otimizadas para conversão. Entrega rápida com domínio incluso.
+          </p>
+        </article>
+        <!-- Card 2 -->
+        <article class="svc-card rounded-2xl border border-border p-8 hover:border-teal/40 transition-colors group">
+          <div class="text-3xl mb-6">⚡</div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-teal transition-colors">Identidade Visual</h3>
+          <p class="text-muted text-sm leading-relaxed">
+            Marca, tipografia e paleta alinhadas à essência do profissional ou negócio para presença marcante.
+          </p>
+        </article>
+        <!-- Card 3 -->
+        <article class="svc-card rounded-2xl border border-border p-8 hover:border-gold/40 transition-colors group">
+          <div class="text-3xl mb-6">🚀</div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-gold transition-colors">Portfólio Completo</h3>
+          <p class="text-muted text-sm leading-relaxed">
+            Presença digital com casos de sucesso, currículo interativo, links centralizados e integração WhatsApp.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-work ══════════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-work" class="py-24 px-8 bg-night">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-gold font-bold mb-3">Portfólio</p>
+          <h2 class="font-display font-black text-4xl md:text-5xl tracking-tight">Trabalhos<br>selecionados.</h2>
+        </div>
+        <a href="{{portfolio_url}}" target="_blank" rel="noreferrer"
+           class="hidden md:inline-flex text-sm font-bold text-muted border-b border-muted/30 pb-1 hover:text-white hover:border-white transition-colors"
+           data-hide-if-placeholder>Ver todos ↗</a>
+      </div>
+
+      <!-- work grid: populated by script.js via {{works}} JSON -->
+      <div class="work-grid" data-works="{{works}}">
+        <div class="col-span-full rounded-2xl border border-border p-16 text-center text-sm text-muted" id="work-placeholder">
+          Projetos em breve.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-testimonial ═══════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-testimonial" class="py-24 px-8 bg-panel">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-teal text-4xl mb-6">"</p>
+      <blockquote class="font-display font-bold text-2xl md:text-3xl leading-snug tracking-tight text-white">
+        {{testimonial_text}}
+      </blockquote>
+      <p class="mt-6 text-sm text-muted" data-hide-if-empty>{{testimonial_author}}</p>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-cta ═══════════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="mod-cta" class="py-32 px-8 cta-gradient">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-gold font-bold mb-6">Próximo passo</p>
+      <h2 class="font-display font-black leading-none tracking-tighter text-white"
+          style="font-size: clamp(3.2rem, 7vw, 6rem);">
+        Pronto<br><em class="italic text-cta">para começar?</em>
+      </h2>
+      <p class="mt-8 text-muted text-lg max-w-xl mx-auto">
+        Sem formulários. Sem espera. Me manda uma mensagem e a gente conversa direto.
+      </p>
+      <div class="mt-12 flex flex-wrap justify-center gap-4">
+        <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full bg-cta text-white px-10 py-4 text-base font-bold hover:bg-orange-400 transition-colors">
+          WhatsApp ↗
+        </a>
+        <a href="mailto:{{email}}"
+           class="inline-flex items-center gap-2 rounded-full border border-border px-10 py-4 text-base font-bold hover:border-white/20 transition-colors">
+          Enviar e-mail
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
+  <footer class="px-8 py-8 border-t border-border flex flex-wrap justify-between items-center gap-4 text-xs text-muted bg-night">
+    <span class="font-bold text-white">{{name}}</span>
+    <span>{{city}} · {{email}}</span>
+    <a href="{{linkedin_url}}" target="_blank" rel="noreferrer" class="hover:text-white transition-colors" data-hide-if-placeholder>LinkedIn</a>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

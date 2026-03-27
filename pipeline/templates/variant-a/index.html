@@ -1,0 +1,240 @@
+<!-- ============================================================
+  VARIANT A — Editorial Light
+  Inspired by: clean editorial portfolio, big serif headline,
+  photo-forward hero, generous white space.
+  Modules (remove any section to disable it):
+    #mod-hero     — full-screen hero with photo + headline
+    #mod-stats    — animated counter row (projects, startups, etc.)
+    #mod-about    — short bio paragraph
+    #mod-skills   — skill chip grid
+    #mod-services — 3-column service cards
+    #mod-work     — portfolio grid (up to 6 items via {{works}})
+    #mod-cta      — closing call-to-action block
+  All {{placeholder}} tokens are replaced by the Builder agent.
+  ============================================================ -->
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <title>{{name}} | {{role}}</title>
+  <meta name="description" content="Portfólio de {{name}} — {{role}} em {{city}}. Projetos, competências e contato direto.">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Instrument Serif"', 'Georgia', 'serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            sand: '#f5efe4',
+            ink: '#1b1a17',
+            muted: '#7a7265',
+            accent: '#b4572f',
+          },
+          keyframes: {
+            fadein: { '0%': { opacity: '0', transform: 'translateY(18px)' }, '100%': { opacity: '1', transform: 'none' } },
+            countup: { from: { opacity: '0' }, to: { opacity: '1' } },
+          },
+          animation: {
+            fadein: 'fadein 0.7s ease both',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-sand text-ink font-body antialiased" data-variant="{{variant}}">
+  <!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+  <nav class="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-5 mix-blend-multiply">
+    <a href="#" class="font-display italic text-xl tracking-tight text-ink/80">{{firstName}}</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+      <li><a href="#mod-about" class="hover:text-ink transition-colors">Sobre</a></li>
+      <li><a href="#mod-services" class="hover:text-ink transition-colors">Serviços</a></li>
+      <li><a href="#mod-work" class="hover:text-ink transition-colors">Portfólio</a></li>
+    </ul>
+    <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+       class="inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-ink text-sand px-5 py-2 text-sm font-semibold hover:bg-ink/80 transition-colors">
+      Conversar ↗
+    </a>
+  </nav>
+
+  <!-- ═══ #mod-hero ════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════ -->
+  <section id="mod-hero" class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-[#f0eade]">
+    <!-- Photo bleeds right -->
+    <div class="absolute inset-0 flex items-end justify-end">
+      <img src="{{photo_url}}" alt="{{name}}"
+           class="h-full w-auto max-w-[60%] object-cover object-top select-none hero-photo"
+           data-hide-if-broken>
+    </div>
+    <!-- Vertical label -->
+    <span class="absolute left-8 top-1/2 -rotate-90 origin-center text-[0.7rem] tracking-[0.28em] uppercase text-muted select-none">{{role}}</span>
+    <!-- Year bump -->
+    <span class="absolute left-8 bottom-10 text-[0.7rem] tracking-[0.2em] text-muted select-none">2026</span>
+
+    <!-- Copy -->
+    <div class="relative z-10 px-8 pb-16 md:pb-24 max-w-3xl animate-fadein">
+      <!-- ═══ #mod-stats ─ remove <div class="flex…"> to disable ═══ -->
+      <div class="flex flex-wrap gap-10 mb-8">
+        <div class="text-left" data-counter data-target="200" data-prefix="+" data-suffix="">
+          <p class="text-4xl font-bold tabular-nums"><span class="counter-value">+200</span></p>
+          <p class="text-xs uppercase tracking-widest text-muted mt-1">Projetos concluídos</p>
+        </div>
+        <div class="text-left" data-counter data-target="50" data-prefix="+" data-suffix="">
+          <p class="text-4xl font-bold tabular-nums"><span class="counter-value">+50</span></p>
+          <p class="text-xs uppercase tracking-widest text-muted mt-1">Startups atendidas</p>
+        </div>
+      </div>
+      <!-- ═══ end #mod-stats ═══ -->
+
+      <h1 class="font-display font-normal leading-none tracking-tighter text-ink"
+          style="font-size: clamp(5rem, 14vw, 11rem);">
+        Hello
+      </h1>
+      <p class="mt-4 text-xl text-muted font-light">
+        — É <span class="font-semibold text-ink">{{name}}</span>, {{role}}.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full bg-ink text-sand px-7 py-3.5 text-sm font-semibold hover:bg-ink/80 transition-colors">
+          Falar no WhatsApp
+        </a>
+        <a href="{{linkedin_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold hover:bg-ink/5 transition-colors"
+           data-hide-if-placeholder>
+          LinkedIn ↗
+        </a>
+        <a href="{{portfolio_url}}" target="_blank" rel="noreferrer"
+           class="inline-flex items-center gap-2 rounded-full border border-ink/20 px-7 py-3.5 text-sm font-semibold hover:bg-ink/5 transition-colors"
+           data-hide-if-placeholder>
+          Portfólio ↗
+        </a>
+      </div>
+
+      <p class="mt-16 text-xs tracking-[0.2em] uppercase text-muted/70 animate-bounce">Scroll down ↓</p>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-about ═══════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════ -->
+  <section id="mod-about" class="py-24 px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-[1fr_2fr] gap-16 items-start">
+      <div>
+        <p class="text-xs uppercase tracking-[0.22em] text-accent font-semibold mb-4">Sobre</p>
+        <h2 class="font-display text-5xl md:text-6xl leading-[0.95] tracking-tight">
+          Design com<br><em>intenção</em>.
+        </h2>
+      </div>
+      <div class="space-y-5 text-muted text-lg leading-relaxed pt-2">
+        <p>
+          {{name}} é {{role}} baseado em {{city}}, com foco em criar experiências digitais
+          que combinam clareza visual, funcionalidade e identidade de marca consistente.
+        </p>
+        <p class="text-ink font-medium">
+          Cada projeto começa com uma pergunta: <em class="font-display italic">o que essa presença digital precisa comunicar?</em>
+        </p>
+        <!-- ═══ inline skills ═══ -->
+        <div class="pt-4 flex flex-wrap gap-2" data-split-items="{{skills}}"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-services ════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════ -->
+  <section id="mod-services" class="py-24 px-8 bg-ink text-sand">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs uppercase tracking-[0.22em] text-accent font-semibold mb-12">Serviços</p>
+      <div class="grid md:grid-cols-3 gap-px bg-sand/10">
+
+        <!-- Service card 1 -->
+        <article class="bg-ink p-10 group hover:bg-[#1f1e1b] transition-colors">
+          <span class="block text-4xl mb-8 font-display">01</span>
+          <h3 class="text-xl font-semibold mb-3">Landing Pages</h3>
+          <p class="text-sand/50 text-sm leading-relaxed">Páginas personalizadas, responsivas e otimizadas para conversão — entregues em menos de 48h.</p>
+        </article>
+
+        <!-- Service card 2 -->
+        <article class="bg-ink p-10 group hover:bg-[#1f1e1b] transition-colors">
+          <span class="block text-4xl mb-8 font-display">02</span>
+          <h3 class="text-xl font-semibold mb-3">Identidade Visual</h3>
+          <p class="text-sand/50 text-sm leading-relaxed">Marca, tipografia e paleta alinhadas à essência do profissional ou negócio.</p>
+        </article>
+
+        <!-- Service card 3 -->
+        <article class="bg-ink p-10 group hover:bg-[#1f1e1b] transition-colors">
+          <span class="block text-4xl mb-8 font-display">03</span>
+          <h3 class="text-xl font-semibold mb-3">Portfólio Digital</h3>
+          <p class="text-sand/50 text-sm leading-relaxed">Presença online completa com cases, currículo interativo e links centralizados.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-work ════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════ -->
+  <section id="mod-work" class="py-24 px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-accent font-semibold mb-2">Portfólio</p>
+          <h2 class="font-display text-5xl leading-none tracking-tight">Trabalhos<br>selecionados.</h2>
+        </div>
+        <a href="{{portfolio_url}}" target="_blank" rel="noreferrer"
+           class="text-sm font-semibold underline underline-offset-4 hover:text-accent transition-colors hidden md:block"
+           data-hide-if-placeholder>Ver todos ↗</a>
+      </div>
+
+      <!-- Work grid — Builder populates via {{works}} JSON array -->
+      <div class="grid md:grid-cols-2 gap-6" data-works="{{works}}">
+        <!-- fallback visible when {{works}} is empty / not yet populated -->
+        <div class="col-span-full rounded-2xl bg-ink/5 border border-ink/8 p-16 text-center text-sm text-muted" id="work-placeholder">
+          Projetos em breve.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ #mod-cta ══════════════════════════════════════════════════
+       Disable: remove this entire <section> block
+       ════════════════════════════════════════════════════════════ -->
+  <section id="mod-cta" class="py-32 px-8 bg-[#f0eade]">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-accent font-semibold mb-6">Próximo passo</p>
+      <h2 class="font-display font-normal leading-none tracking-tight text-ink mb-8"
+          style="font-size: clamp(3.5rem, 8vw, 6.5rem);">
+        Vamos conversar?</h2>
+      <p class="text-muted text-lg mb-12 max-w-xl mx-auto">
+        Me mande uma mensagem direta. Sem formulários, sem espera.
+      </p>
+      <a href="{{cta_url}}" target="_blank" rel="noreferrer"
+         class="inline-flex items-center gap-2 rounded-full bg-ink text-sand px-10 py-4 text-base font-semibold hover:bg-ink/80 transition-colors">
+        Abrir WhatsApp ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+  <footer class="px-8 py-8 border-t border-ink/8 flex flex-wrap justify-between items-center gap-4 text-xs text-muted">
+    <span>{{name}} · {{city}}</span>
+    <span>{{email}}</span>
+    <a href="{{linkedin_url}}" target="_blank" rel="noreferrer" class="hover:text-ink transition-colors" data-hide-if-placeholder>LinkedIn</a>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

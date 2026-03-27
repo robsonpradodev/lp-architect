@@ -1,0 +1,20 @@
+{
+  "name": "lp-sales-pipeline",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "scout": "node --loader ts-node/esm src/pipeline/scout.ts",
+    "build-preview": "node --loader ts-node/esm src/pipeline/builder.ts",
+    "test-run": "node --loader ts-node/esm src/pipeline/test-run.ts",
+    "full-pipeline": "node --loader ts-node/esm src/pipeline/full-pipeline.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
